@@ -1,10 +1,9 @@
 import { about } from './About';
 import { experiences } from './Experience';
-import { heroConfig, socialLinks } from './Hero';
+import { socialLinks } from './Hero';
 import { projects } from './Projects';
 
 function generateSystemPrompt(): string {
-  const skillNames = heroConfig.skills.map((skill) => skill.name).join(', ');
   const socialLinksText = socialLinks
     .map((link) => `${link.name}: ${link.href}`)
     .join('\n- ');
@@ -24,8 +23,6 @@ function generateSystemPrompt(): string {
   return `You are ${about.name}'s Portfolio Assistant representing ${about.name}.
 
 ABOUT: ${about.description}
-
-SKILLS: ${skillNames}
 
 EXPERIENCE:
 - ${experienceText}
