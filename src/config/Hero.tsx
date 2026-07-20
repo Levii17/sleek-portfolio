@@ -31,6 +31,11 @@ export const heroConfig = {
 // Social Links Configuration
 export const socialLinks = [
   {
+    name: 'Github',
+    href: 'https://github.com/Levii17',
+    icon: <Github />,
+  },
+  {
     name: 'Twitter',
     href: 'https://www.instagram.com/x_mxolisi_x/',
     icon: <X />,
@@ -39,11 +44,6 @@ export const socialLinks = [
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/mxolisi-bhotile/',
     icon: <LinkedIn />,
-  },
-  {
-    name: 'Github',
-    href: 'https://github.com/Levii17',
-    icon: <Github />,
   },
   {
     name: 'Email',
