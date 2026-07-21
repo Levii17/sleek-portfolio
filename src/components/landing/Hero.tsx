@@ -152,12 +152,15 @@ export default function Hero() {
     });
 
     if (previewUrl) {
+      // Don't toggle previewPlaying manually here — the audio element's
+      // onPlay/onPause/onEnded handlers below keep it in sync with what's
+      // actually happening, so a failed/interrupted play() doesn't leave
+      // the UI showing "playing" when nothing is audible.
       if (previewPlaying) {
         audioRef.current?.pause();
       } else {
-        audioRef.current?.play().catch(() => {});
+        audioRef.current?.play().catch(() => setPreviewPlaying(false));
       }
-      setPreviewPlaying((prev) => !prev);
       return;
     }
 
@@ -265,6 +268,20 @@ export default function Hero() {
                   }
                 />
               </div>
+
+              {previewUrl && (
+                <audio
+                  key={previewUrl}
+                  ref={audioRef}
+                  src={previewUrl}
+                  preload="none"
+                  className="hidden"
+                  onPlay={() => setPreviewPlaying(true)}
+                  onPause={() => setPreviewPlaying(false)}
+                  onEnded={() => setPreviewPlaying(false)}
+                  onError={() => setPreviewPlaying(false)}
+                />
+              )}
 
               {showEmbed && trackId && !previewUrl && (
                 <iframe

@@ -8,8 +8,7 @@ export const heroConfig = {
   name: 'Mxolisi',
   title: '21y • eng • cs',
   avatar: '/assets/logo.png',
-  description:
-    'Love building cool stuff, shipping side projects, and learning in public.',
+  description: 'Tryna build cool stuff, ship side projects, and learn.',
 
   // Buttons Configuration
   buttons: [
