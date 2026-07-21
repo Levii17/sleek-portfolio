@@ -7,16 +7,16 @@ import Container from './Container';
 export default function Footer() {
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Work', href: '/work' },
+    // { name: 'Work', href: '/work' },
     { name: 'Blog', href: '/blog' },
     { name: 'Resume', href: '/resume' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Gears', href: '/gears' },
-    { name: 'Setup', href: '/setup' },
-    { name: 'Terminal', href: '/terminal' },
+    // { name: 'Gears', href: '/gears' },
+    // { name: 'Setup', href: '/setup' },
+    // { name: 'Terminal', href: '/terminal' },
     { name: 'Books', href: '/books' },
     { name: 'Movies', href: '/movies' },
-    { name: 'RSS FEED', href: '/blog/feed.xml' },
+    // { name: 'RSS FEED', href: '/blog/feed.xml' },
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="X"
-                href="https://x.com/ramxcodes"
+                href="https://x.com/x_mxolisi_x"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="LinkedIn"
-                href="https://www.linkedin.com/in/ramxcodes/"
+                href="https://www.linkedin.com/in/mxolisi-bhotile/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="Github"
-                href="https://github.com/ramxcodes"
+                href="https://github.com/Levii17"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="YouTube"
-                href="https://youtube.com/@ramxcodes"
+                href="https://youtube.com/@ImLevii_"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +137,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="Instagram"
-                href="https://www.instagram.com/ramxcodes/"
+                href="https://www.instagram.com/x_mxolisi_x/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="Pinterest"
-                href="https://www.pinterest.com/ramxcodes/"
+                href="https://www.pinterest.com/levii47/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,30 +180,8 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
-                aria-label="Medium"
-                href="https://ramxcodes.medium.com/"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                  className="size-5"
-                >
-                  <path
-                    d="M128,128A56,56,0,1,1,72,72,56,56,0,0,1,128,128Zm56-56c-13.25,0-24,25.07-24,56s10.75,56,24,56,24-25.07,24-56S197.25,72,184,72Z"
-                    opacity="0.2"
-                  />
-                  <path d="M72,64a64,64,0,1,0,64,64A64.07,64.07,0,0,0,72,64Zm0,112a48,48,0,1,1,48-48A48.05,48.05,0,0,1,72,176ZM184,64c-5.68,0-16.4,2.76-24.32,21.25C154.73,96.8,152,112,152,128s2.73,31.2,7.68,42.75C167.6,189.24,178.32,192,184,192s16.4-2.76,24.32-21.25C213.27,159.2,216,144,216,128s-2.73-31.2-7.68-42.75C200.4,66.76,189.68,64,184,64Zm0,112c-5.64,0-16-18.22-16-48s10.36-48,16-48,16,18.22,16,48S189.64,176,184,176ZM248,72V184a8,8,0,0,1-16,0V72a8,8,0,0,1,16,0Z" />
-                </svg>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-border bg-background text-muted-foreground hover:bg-muted hover:text-primary flex size-9 items-center justify-center rounded-lg border shadow-none transition-colors"
                 aria-label="Email"
-                href="mailto:hi@ramx.in"
+                href="mailto:mxolisibhotile58@gmail.com"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

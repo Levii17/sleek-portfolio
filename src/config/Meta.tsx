@@ -18,10 +18,11 @@ export const siteConfig = {
   ogImage: '/meta/opengraph-image.png',
   author: {
     name: about.name,
-    twitter: '@ramxcodes',
-    github: 'ramxcodes',
-    linkedin: 'ramxcodes',
-    email: 'ramxcodes@gmail.com',
+    twitter: '@x_mxolisi_x',
+    instagram: '@x_mxolisi_x',
+    github: 'Levii17',
+    linkedin: 'mxolisi-bhotile',
+    email: 'mxolisibhotile58@gmail.com',
   },
   keywords: [
     'portfolio',
@@ -38,7 +39,7 @@ export const siteConfig = {
 export const pageMetadata: Record<string, PageMeta> = {
   // Home page
   '/': {
-    title: `${heroConfig.name} - ${heroConfig.title}`,
+    title: `${heroConfig.name} - Bhotile`,
     description: `${about.description} Explore my projects, experience, and technical expertise.`,
     keywords: [
       'portfolio',
