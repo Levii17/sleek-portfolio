@@ -11,13 +11,13 @@ import { Card } from '../ui/card';
 const setup = [
   {
     name: 'Gears Used',
-    description: 'Productivity Tools, Gears i use to get my work done.',
+    description: 'Hardware and tools I use.',
     icon: <Gear className="size-4" />,
     href: '/gears',
   },
   {
     name: 'VS Code / Cursor Setup',
-    description: 'VS Code / Cursor Setup i use daily.',
+    description: 'My editor setup and extensions.',
     icon: <Code className="size-4" />,
     href: '/setup',
   },

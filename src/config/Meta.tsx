@@ -1,4 +1,3 @@
-import { about } from './About';
 import { heroConfig } from './Hero';
 
 export interface PageMeta {
@@ -13,11 +12,11 @@ export interface PageMeta {
 export const siteConfig = {
   name: heroConfig.name,
   title: 'Sleek Portfolio',
-  description: 'Sleek Portfolio Template by @Ramxcodes',
+  description: `${heroConfig.name}'s personal portfolio - ${heroConfig.description}`,
   url: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
   ogImage: '/meta/opengraph-image.png',
   author: {
-    name: about.name,
+    name: heroConfig.name,
     twitter: '@x_mxolisi_x',
     instagram: '@x_mxolisi_x',
     github: 'Levii17',
@@ -40,7 +39,7 @@ export const pageMetadata: Record<string, PageMeta> = {
   // Home page
   '/': {
     title: `${heroConfig.name} - Bhotile`,
-    description: `${about.description} Explore my projects, experience, and technical expertise.`,
+    description: `${heroConfig.description} Explore my projects and technical expertise.`,
     keywords: [
       'portfolio',
       'developer',
@@ -60,22 +59,6 @@ export const pageMetadata: Record<string, PageMeta> = {
     keywords: ['contact', 'hire', 'collaboration', 'freelance', 'developer'],
     ogImage: '/assets/logo.png',
     twitterCard: 'summary',
-  },
-
-  // Work Experience page
-  '/work-experience': {
-    title: 'Work Experience - Professional Journey',
-    description:
-      'Explore my professional work experience across different companies and roles in software development.',
-    keywords: [
-      'work experience',
-      'career',
-      'professional',
-      'software developer',
-      'employment history',
-    ],
-    ogImage: '/meta/work.png',
-    twitterCard: 'summary_large_image',
   },
 
   // Projects page

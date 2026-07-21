@@ -1,10 +1,8 @@
 import Container from '@/components/common/Container';
-import { TrackedLink } from '@/components/common/TrackedLink';
-import CheckCircle from '@/components/svgs/CheckCircle';
 import { Separator } from '@/components/ui/separator';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { settingsJson, steps } from '@/config/Setup';
-import { Download, ExternalLink, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -33,8 +31,7 @@ export default function SetupPage() {
             Setup
           </h1>
           <p className="text-muted-foreground mx-auto max-w-2xl px-4 text-base md:text-lg">
-            Complete guide to setting up VS Code with my preferred
-            configuration, extensions, and fonts.
+            My VS Code extensions and settings.
           </p>
         </div>
         <Separator />
@@ -64,39 +61,8 @@ export default function SetupPage() {
               <div className="ml-4 space-y-3 sm:ml-8 md:ml-16 md:space-y-4">
                 {step.content.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    {item.type === 'download' && (
-                      <TrackedLink
-                        href={item.href || '#'}
-                        download
-                        className="bg-muted/50 hover:bg-muted/70 flex w-full flex-col gap-3 rounded-lg border border-black/10 p-3 transition-colors sm:flex-row sm:items-center md:p-4 dark:border-white/10"
-                        track={{
-                          name: 'button_click',
-                          data: {
-                            buttonId: 'setup_download',
-                            section: 'setup',
-                            action: item.name,
-                          },
-                        }}
-                      >
-                        <Download className="text-muted-foreground size-4 flex-shrink-0" />
-                        <div className="flex-1">
-                          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
-                            <span className="text-sm font-medium">
-                              {item.name}
-                            </span>
-                            <ExternalLink className="text-muted-foreground size-3" />
-                          </div>
-                          <p className="text-muted-foreground mt-1 text-sm">
-                            {item.description}
-                          </p>
-                        </div>
-                      </TrackedLink>
-                    )}
-
                     {item.type === 'instruction' && (
-                      <div className="flex items-center gap-3">
-                        <p className="text-secondary text-sm">{item.text}</p>
-                      </div>
+                      <p className="text-secondary text-sm">{item.text}</p>
                     )}
 
                     {item.type === 'shortcut' && (
@@ -121,7 +87,7 @@ export default function SetupPage() {
             </div>
           ))}
 
-          {/* Settings JSON Section */}
+          {/* Settings JSON */}
           <div className="space-y-4 md:space-y-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <div className="bg-muted flex w-fit items-center justify-center rounded-md border border-black/10 p-2 text-[#736F70] dark:border-white/10">
@@ -136,98 +102,13 @@ export default function SetupPage() {
               <div className="bg-muted/30 overflow-hidden rounded-lg border border-black/10 dark:border-white/10">
                 <div className="bg-muted flex items-center justify-between border-b border-black/10 px-3 py-2 md:px-4 dark:border-white/10">
                   <span className="text-sm font-medium">settings.json</span>
-                  <button className="text-muted-foreground hover:text-primary text-xs transition-colors">
-                    Copy
-                  </button>
                 </div>
                 <div className="overflow-x-auto">
                   <pre className="min-w-full p-3 text-xs md:p-4">
                     <code className="language-json text-secondary block font-mono leading-relaxed whitespace-pre">
-                      {settingsJson.split('\n').map((line, index) => {
-                        const trimmedLine = line.trim();
-                        if (trimmedLine.startsWith('//')) {
-                          return (
-                            <div
-                              key={index}
-                              className="text-muted-foreground/60 italic"
-                            >
-                              {line}
-                            </div>
-                          );
-                        } else if (
-                          trimmedLine.includes(':') &&
-                          trimmedLine.includes('"')
-                        ) {
-                          const [key, ...valueParts] = line.split(':');
-                          const value = valueParts.join(':');
-                          return (
-                            <div key={index}>
-                              <span className="text-secondary font-medium">
-                                {key}
-                              </span>
-                              <span className="text-muted-foreground">:</span>
-                              <span className="text-muted-foreground">
-                                {value}
-                              </span>
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div key={index} className="text-muted-foreground">
-                              {line}
-                            </div>
-                          );
-                        }
-                      })}
+                      {settingsJson}
                     </code>
                   </pre>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Final Steps */}
-          <div className="space-y-4 md:space-y-6">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <div className="bg-muted flex w-fit items-center justify-center rounded-md border border-black/10 px-3 py-2 text-[#736F70] dark:border-white/10">
-                <span className="text-secondary text-sm font-medium">
-                  Final
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="bg-muted flex items-center justify-center rounded-md border border-black/10 p-2 text-[#736F70] dark:border-white/10">
-                  <CheckCircle className="text-secondary size-4" />
-                </div>
-                <h2 className="text-xl font-semibold md:text-2xl">
-                  Complete Setup
-                </h2>
-              </div>
-            </div>
-
-            <div className="ml-4 space-y-3 sm:ml-8 md:ml-16 md:space-y-4">
-              <div className="flex items-center gap-3">
-                <p className="text-secondary text-sm">
-                  Paste the code in the settings.json file in VS Code
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-                <p className="text-secondary text-sm">
-                  Save the settings.json file
-                </p>
-                <kbd className="bg-muted w-fit rounded border border-black/20 px-2 py-1 font-mono text-xs dark:border-white/20">
-                  Cmd + S (Mac) / Ctrl + S (Windows)
-                </kbd>
-                <span className="text-secondary text-sm">
-                  and restart VS Code
-                </span>
-              </div>
-
-              <div className="bg-muted/50 mt-4 flex items-center gap-3 rounded-lg border border-black/10 p-3 md:mt-6 md:p-4 dark:border-white/10">
-                <CheckCircle className="text-secondary size-5" />
-                <div className="flex items-center gap-2">
-                  <span className="text-secondary font-medium">Done!</span>
-                  <span className="text-2xl">🚀</span>
                 </div>
               </div>
             </div>
