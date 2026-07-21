@@ -15,8 +15,21 @@ import Container from '../common/Container';
 import CV from '../svgs/CV';
 import Spotify from '../svgs/Spotify';
 
+// 1. Define explicit props interface for SocialButton
+interface SocialButtonProps {
+  href?: string;
+  children: React.ReactNode;
+  isMailto?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
 // Helper component to handle the complex button styling and layered background gradients
-function SocialButton({ href, children, isMailto, onClick }) {
+function SocialButton({
+  href,
+  children,
+  isMailto,
+  onClick,
+}: SocialButtonProps) {
   const content = (
     <>
       <span
@@ -77,7 +90,7 @@ function SocialButton({ href, children, isMailto, onClick }) {
 
   return (
     <Link
-      href={href}
+      href={href || '#'}
       target={isMailto ? undefined : '_blank'}
       rel={isMailto ? undefined : 'noopener noreferrer'}
       className={baseClasses}
@@ -278,7 +291,6 @@ export default function Hero() {
             </span>
           </h2>
           <div className="flex flex-wrap gap-2">
-            {/* Map through your dynamic social links */}
             {socialLinks.map((link) => {
               const isMailto = link.href.startsWith('mailto:');
               return (
@@ -310,7 +322,10 @@ export default function Hero() {
             {/* Resume Button mapped to your specific Next.js page */}
             <div className="inline-block">
               <SocialButton href="/resume">
-                <CV className="size-3.5" />
+                {/* 2. Wrap CV in a styling span rather than passing className directly */}
+                <span className="flex size-3.5 items-center justify-center [&>svg]:size-full">
+                  <CV />
+                </span>
                 Resume
               </SocialButton>
             </div>
