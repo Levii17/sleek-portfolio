@@ -1,41 +1,18 @@
 'use client';
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 import { useUmami } from '@/hooks/use-umami';
 import type { AnalyticsEventData } from '@/types/analytics';
 import { type Project } from '@/types/project';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { Link } from 'next-view-transitions';
-import Image from 'next/image';
-import React, { useState } from 'react';
-
-import ArrowRight from '../svgs/ArrowRight';
-import Github from '../svgs/Github';
-import PlayCircle from '../svgs/PlayCircle';
-import Website from '../svgs/Website';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const { trackEvent } = useUmami();
 
-  // Stable, human-readable id derived from the project's details route, e.g.
-  // '/projects/sleek-portfolio' -> 'sleek-portfolio'. Keeps every project
-  // uniquely identifiable in the dashboard with no per-project config.
   const projectId =
     project.projectDetailsPageSlug.split('/').filter(Boolean).pop() ??
     project.title;
@@ -53,150 +30,86 @@ export function ProjectCard({ project }: ProjectCardProps) {
       },
     });
 
-  return (
-    <Card className="group h-full w-full overflow-hidden border-gray-100 p-0 shadow-none transition-all dark:border-gray-800">
-      <CardHeader className="p-0">
-        <div className="group relative aspect-video overflow-hidden">
-          <Image
-            className="h-full w-full object-cover"
-            src={project.image}
-            alt={project.title}
-            width={1920}
-            height={1080}
-          />
-          {project.video && (
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-              <DialogTrigger asChild>
-                <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:backdrop-blur-xs">
-                  <button
-                    className="flex size-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30"
-                    onClick={() => trackProject('play_video')}
-                  >
-                    <PlayCircle />
-                  </button>
-                </div>
-              </DialogTrigger>
-              <DialogContent className="w-full max-w-4xl border-0 p-0">
-                <div className="aspect-video w-full">
-                  <video
-                    className="h-full w-full rounded-lg object-cover"
-                    src={project.video}
-                    autoPlay
-                    loop
-                    controls
-                  />
-                </div>
-                <DialogTitle className="sr-only">{project.title}</DialogTitle>
-              </DialogContent>
-            </Dialog>
-          )}
-        </div>
-      </CardHeader>
+  const statusLabel = project.isWorking ? 'Active' : 'In progress';
 
-      <CardContent className="px-6">
-        <div className="space-y-4">
-          {/* Project Header - Title and Icons */}
-          <div className="flex items-center justify-between gap-4">
+  return (
+    <article className="group rounded-[7.2px] border border-[#E5E5E5] bg-[#F9F9F9] p-5 transition-colors hover:border-[#d0d0d0] dark:border-[#2a2a2a] dark:bg-[#111111] dark:hover:border-[#3a3a3a]">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0">
             <Link
               href={project.projectDetailsPageSlug}
+              className="block"
               onClick={() => trackProject('view_details')}
             >
-              <h3 className="group-hover:text-primary text-xl leading-tight font-semibold hover:cursor-pointer">
+              <h3 className="text-[1rem] font-semibold tracking-tight text-[#100F0F] transition-colors group-hover:text-black dark:text-[#f5f5f5] dark:group-hover:text-white">
                 {project.title}
               </h3>
             </Link>
-            <div className="flex items-center gap-2">
-              <Tooltip>
-                <TooltipTrigger>
-                  <Link
-                    className="text-secondary hover:text-primary flex size-6 items-center justify-center transition-colors"
-                    href={project.link}
-                    target="_blank"
-                    onClick={() => trackProject('visit_website')}
-                  >
-                    <Website />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>View Website</p>
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger>
-                  {project.github && (
-                    <Link
-                      className="text-secondary hover:text-primary flex size-6 items-center justify-center transition-colors"
-                      href={project.github}
-                      target="_blank"
-                      onClick={() => trackProject('visit_github')}
-                    >
-                      <Github />
-                    </Link>
-                  )}
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>View GitHub</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
+            <p className="mt-1 text-[11px] tracking-[0.24em] text-[#909092] uppercase dark:text-[#9b9b9b]">
+              {statusLabel}
+            </p>
           </div>
 
-          {/* Description */}
-          <p className="text-secondary line-clamp-3">{project.description}</p>
-
-          {/* Technologies */}
-          <div>
-            <h4 className="text-secondary mb-2 text-sm font-medium">
-              Technologies
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((technology, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger>
-                    <div className="size-6 transition-all duration-300 hover:scale-120 hover:cursor-pointer">
-                      {technology.icon}
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{technology.name}</p>
-                  </TooltipContent>
-                </Tooltip>
-              ))}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-
-      {project.details && (
-        <CardFooter className="flex justify-between p-6 pt-0">
-          <div
-            className={`flex items-center gap-1 rounded-md px-2 py-1 text-xs ${
-              project.isWorking
-                ? 'border-green-300 bg-green-500/10'
-                : 'border-red-300 bg-red-500/10'
-            }`}
-          >
-            {project.isWorking ? (
-              <>
-                <div className="size-2 animate-pulse rounded-full bg-green-500" />
-                All Systems Operational
-              </>
-            ) : (
-              <>
-                <div className="size-2 animate-pulse rounded-full bg-red-500" />
-                Building
-              </>
+          <div className="flex items-center gap-2">
+            {project.link && (
+              <Link
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-[#E5E5E5] bg-white/70 px-2.5 py-1 text-[11px] tracking-[0.2em] text-[#100F0F] uppercase transition-colors hover:bg-white dark:border-[#2a2a2a] dark:bg-[#1b1b1b] dark:text-[#f5f5f5] dark:hover:bg-[#222222]"
+                onClick={() => trackProject('visit_website')}
+              >
+                Live
+                <ArrowUpRight className="size-3.5" />
+              </Link>
+            )}
+            {project.github && (
+              <Link
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-[#E5E5E5] bg-white/70 px-2.5 py-1 text-[11px] tracking-[0.2em] text-[#100F0F] uppercase transition-colors hover:bg-white dark:border-[#2a2a2a] dark:bg-[#1b1b1b] dark:text-[#f5f5f5] dark:hover:bg-[#222222]"
+                onClick={() => trackProject('visit_github')}
+              >
+                Code
+                <Github className="size-3.5" />
+              </Link>
             )}
           </div>
-          <Link
-            href={project.projectDetailsPageSlug}
-            className="text-secondary hover:text-primary flex items-center gap-2 text-sm underline-offset-4 transition-colors hover:underline"
-            onClick={() => trackProject('view_details')}
-          >
-            View Details <ArrowRight className="size-4" />
-          </Link>
-        </CardFooter>
-      )}
-    </Card>
+        </div>
+
+        <p className="text-sm leading-6 text-[#909092] dark:text-[#9b9b9b]">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((technology, index) => (
+            <span
+              key={`${project.title}-${technology.name}-${index}`}
+              className="rounded-full border border-[#E5E5E5] bg-white/70 px-2.5 py-1 text-[11px] tracking-[0.2em] text-[#100F0F] uppercase dark:border-[#2a2a2a] dark:bg-[#1b1b1b] dark:text-[#f5f5f5]"
+            >
+              {technology.name}
+            </span>
+          ))}
+        </div>
+
+        {project.details && (
+          <div className="flex items-center justify-between border-t border-[#E5E5E5] pt-3 dark:border-[#2a2a2a]">
+            <p className="text-xs tracking-[0.2em] text-[#909092] uppercase dark:text-[#9b9b9b]">
+              Case study
+            </p>
+            <Link
+              href={project.projectDetailsPageSlug}
+              className="inline-flex items-center gap-1 text-sm text-[#100F0F] transition-colors hover:underline dark:text-[#f5f5f5]"
+              onClick={() => trackProject('view_details')}
+            >
+              View details
+              <ArrowUpRight className="size-3.5" />
+            </Link>
+          </div>
+        )}
+      </div>
+    </article>
   );
 }
