@@ -1,7 +1,7 @@
 import Container from '@/components/common/Container';
-import Blog from '@/components/landing/Blog';
+// import Blog from '@/components/landing/Blog';
 import CTA from '@/components/landing/CTA';
-import Github from '@/components/landing/Github';
+// import Github from '@/components/landing/Github';
 import Hero from '@/components/landing/Hero';
 import Journey from '@/components/landing/Journey';
 import Work from '@/components/landing/Projects';
@@ -15,11 +15,12 @@ export default function page() {
       <Hero />
       <SkillsGrid />
       <Work />
-      <Github />
-      <Blog />
-      <CTA />
+      {/* <Github /> */}
+      {/* <Blog /> */}
+      {/* <CTA /> */}
       <Setup />
       <Journey />
+      <CTA />
     </Container>
   );
 }

@@ -9,25 +9,20 @@ export default function SkillsGrid() {
     <Container>
       <section
         id="skills"
-        className="relative mt-2 mb-0 w-full scroll-mt-24 pb-12"
+        className="relative mt-4 mb-0 w-full scroll-mt-24 pb-12"
       >
-        {/* Header Block with Decorative Grid Lines */}
-        <div className="relative mb-6 w-full py-3">
-          <div className="grid-line-h top-0" />
-          <div className="grid-intersection top-0 -left-6 hidden -translate-x-1/2 -translate-y-1/2 sm:block" />
-          <div className="grid-intersection top-0 -right-6 hidden translate-x-1/2 -translate-y-1/2 sm:block" />
-
-          <header className="font-serif text-2xl font-normal text-neutral-800 sm:text-3xl dark:text-neutral-200">
-            Skills
-          </header>
-
-          <div className="grid-line-h bottom-0" />
-          <div className="grid-intersection bottom-0 -left-6 hidden -translate-x-1/2 translate-y-1/2 sm:block" />
-          <div className="grid-intersection -right-6 bottom-0 hidden translate-x-1/2 translate-y-1/2 sm:block" />
+        <div className="relative mb-2 w-full py-3">
+          <div className="flex flex-col gap-2">
+            <p className="text-[11px] tracking-[0.24em] text-[#909092] uppercase dark:text-[#9b9b9b]">
+              What I work with
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight text-[#100F0F] sm:text-[1.4rem] dark:text-[#f5f5f5]">
+              Skills
+            </h2>
+          </div>
         </div>
 
-        {/* Dynamic Skill Pills */}
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-2">
           {skillsGrid.map((skill) => (
             <TrackedLink
               key={skill.name}

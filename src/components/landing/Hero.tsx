@@ -283,7 +283,7 @@ export default function Hero() {
         )}
 
         {/* Social Links */}
-        <div className="mt-8 mb-4 w-full">
+        <div className="mt-2 mb-4 w-full">
           <h2 className="mb-2.5 text-[14px] text-zinc-500 dark:text-zinc-400">
             Here are my{' '}
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
