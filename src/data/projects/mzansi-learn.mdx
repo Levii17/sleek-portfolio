@@ -1,0 +1,101 @@
+---
+title: 'Mzansi Learn'
+description: 'A modern Learning Management System built with Next.js, Prisma, PostgreSQL, and TypeScript.'
+image: '/project/mzansi-learn.png'
+technologies:
+[
+'Next.js',
+'TypeScript',
+'Prisma',
+'PostgreSQL',
+'Tailwind CSS',
+'NextAuth/Auth.js',
+'Zod',
+'Neon',
+'Vercel',
+]
+github: 'https://github.com/Levii17/mzansi-learn'
+live: 'https://mzansi-learn.vercel.app'
+timeline: 'Ongoing'
+role: 'Full Stack Developer'
+team: 'Solo'
+status: 'in-progress'
+featured: true
+challenges:
+[
+'Designing a scalable database schema',
+'Implementing secure authentication',
+'Managing Prisma database migrations',
+'Balancing Server and Client Components',
+'Building reusable UI components',
+]
+learnings:
+[
+'Architecting full-stack applications with Next.js',
+'Database modelling using Prisma',
+'Authentication and authorization best practices',
+'Planning projects before development',
+'Writing maintainable and scalable code',
+]
+isPublished: true
+---
+
+# MzansiLearn
+
+## Overview
+
+MzansiLearn is a full-stack Learning Management System I'm building to understand, properly, what goes into a modern educational platform once you get past the tutorial-sized version of the problem. It's not built around one flashy feature — it's authentication, database design, server-side rendering, and a UI that actually holds together, all living in the same application and having to work together.
+
+It's part portfolio piece, part engineering exercise. Before I wrote a line of application code, I spent real time on the architecture, the database schema, and the user flows, because I wanted the foundation to hold up as the feature list grew rather than fight me later.
+
+## Why I built it
+
+I wanted something that went past a CRUD app. Most tutorials end the moment you can display rows from a database on a page, but that's the easy 20% — the rest of a real application is secure authentication, protected routes, relationships between your data that actually make sense, validation on every input a user can touch, an architecture that doesn't fall over as it grows, and a codebase organized well enough that future-me doesn't hate present-me. MzansiLearn was my excuse to actually build through all of that instead of stopping early.
+
+## Core features
+
+**Authentication** covers registration, secure password hashing, email verification, password reset, protected routes, and session management — the full flow, not just a login form.
+
+**The learning platform itself** has a course catalogue, a student dashboard, course enrollment, progress tracking, and layouts that hold up on mobile as well as desktop.
+
+**On the developer experience side**, I leaned hard into type-safe database queries, a reusable component library, a folder structure that stays predictable as it grows, and TypeScript end to end rather than just on the frontend.
+
+## Tech stack
+
+On the frontend, it's Next.js with the App Router doing the heavy lifting for full-stack React, TypeScript for type safety, and Tailwind for styling. On the backend, Route Handlers serve as the API layer, Prisma handles database access, PostgreSQL (via Neon) is the database itself, Auth.js/NextAuth handles authentication, and Zod validates everything coming in from a request before it touches the database.
+
+## Technical highlights
+
+### Keeping it one application
+
+Rather than splitting the frontend and backend into separate repos, everything lives inside a single Next.js application. It's a small decision that pays off constantly — authentication, routing, and deployment all get noticeably simpler when there isn't a second service to keep in sync.
+
+### Designing the database before writing code
+
+One of the earliest steps, and one I'm glad I didn't skip, was designing the schema before touching implementation. The relationships between users, courses, enrollments, and lessons were mapped out deliberately, so adding features later means extending the schema instead of fighting it. Prisma made that process noticeably better day to day — type-safe queries, migrations that actually stay predictable, and database interactions that read cleanly instead of feeling like raw SQL wearing a disguise.
+
+### Authentication, properly done
+
+This ended up being the most technically demanding part of the whole project, by a wide margin. It would have been easy to ship a login form and call it "authentication," but I wanted the full flow users actually expect from a real product — secure password hashing, email verification, password recovery, session management that holds up under scrutiny, and route protection that's actually enforced rather than assumed. Building all of that properly taught me more about application security than any tutorial had up to that point.
+
+### Planning before coding
+
+This is the part of the project I'm probably most proud of, even though it's the least visible in a demo. Before writing the first feature, I put together a Software Requirements Specification, mapped out user flows, built an Entity Relationship Diagram, wrote a software architecture document, and put together a product backlog and sprint plan. It felt like a lot of upfront overhead at the time. It paid for itself almost immediately — development stayed organized, and I avoided the kind of mid-project architectural rewrites that usually come from skipping this step.
+
+## Challenges
+
+The biggest one, honestly, was realizing early on that authentication is not a login page — it's validation, password security, session handling, and account recovery all working together correctly, and getting any one of those wrong undermines the rest. A close second was keeping the database schema evolving cleanly as the project grew; managing migrations without breaking things in the process taught me to think about relationships up front rather than patch them in later. And the App Router itself took some adjusting to — specifically learning to think in terms of where code actually executes, server versus client, instead of assuming everything runs the same way React always has.
+
+## What I learned
+
+Building something at this scale made it clear that production-quality software is as much about planning as it is about writing code. Architecture decisions echo much further down the line than they seem to at the time. Database design rewards the time you put in before implementation, almost every time. Authentication turned out to be one of the genuinely hardest parts of a modern web app to get right — not because any single piece is hard, but because all of it has to work together without a weak link. Leaning into TypeScript properly, rather than half-heartedly, made me noticeably more confident shipping changes. And small organizational decisions compound in ways that aren't obvious until a project has grown enough for them to matter.
+
+If there's one thing that stuck with me above the rest, it's that the technology choices should follow from what the project actually needs — not from what's trending.
+
+## Looking ahead
+
+MzansiLearn is still very much a work in progress. Next up: quizzes and assessments, assignment submissions, certificates, an instructor dashboard, notifications, search, discussion forums, analytics, and admin tooling. The plan is to keep building it out while sticking to the same principles that got it this far — solid architecture, real attention to performance, and a user experience that doesn't feel like an afterthought.
+
+## Final thoughts
+
+MzansiLearn ended up teaching me more than I expected going in. It's where I stopped just building applications and started actually planning systems first — designing the database, thinking about scale, and working through problems before writing the code meant to solve them. There's still plenty left to build, but it's already done its job: it's made me a noticeably better full-stack developer than I was before I started it.

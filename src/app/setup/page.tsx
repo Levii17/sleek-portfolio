@@ -1,8 +1,9 @@
 import Container from '@/components/common/Container';
+import { TrackedLink } from '@/components/common/TrackedLink';
 import { Separator } from '@/components/ui/separator';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { settingsJson, steps } from '@/config/Setup';
-import { FileText } from 'lucide-react';
+import { Download, ExternalLink, FileText } from 'lucide-react';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -61,6 +62,35 @@ export default function SetupPage() {
               <div className="ml-4 space-y-3 sm:ml-8 md:ml-16 md:space-y-4">
                 {step.content.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
+                    {item.type === 'download' && (
+                      <TrackedLink
+                        href={item.href || '#'}
+                        download
+                        className="bg-muted/50 hover:bg-muted/70 flex w-full flex-col gap-3 rounded-lg border border-black/10 p-3 transition-colors sm:flex-row sm:items-center md:p-4 dark:border-white/10"
+                        track={{
+                          name: 'button_click',
+                          data: {
+                            buttonId: 'setup_download',
+                            section: 'setup',
+                            action: item.name,
+                          },
+                        }}
+                      >
+                        <Download className="text-muted-foreground size-4 flex-shrink-0" />
+                        <div className="flex-1">
+                          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+                            <span className="text-sm font-medium">
+                              {item.name}
+                            </span>
+                            <ExternalLink className="text-muted-foreground size-3" />
+                          </div>
+                          <p className="text-muted-foreground mt-1 text-sm">
+                            {item.description}
+                          </p>
+                        </div>
+                      </TrackedLink>
+                    )}
+
                     {item.type === 'instruction' && (
                       <p className="text-secondary text-sm">{item.text}</p>
                     )}

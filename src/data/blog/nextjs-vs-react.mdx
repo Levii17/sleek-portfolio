@@ -1,0 +1,62 @@
+---
+title: 'Why I Chose Next.js Instead of React + Vite'
+description: 'A look at the architectural decisions that led me to choose Next.js over React + Vite for my latest full-stack project.'
+image: '/blog/nextjs-vs-react-vite.png'
+tags: ['nextjs', 'react', 'architecture', 'full-stack']
+date: '2026-07-21'
+isPublished: true
+---
+
+# Why I Chose Next.js Instead of React + Vite
+
+Choosing a framework is one of the first decisions you make on a new project, and it's also one of the easiest to get wrong for the wrong reasons. There's no shortage of opinions online about which one is "better," and it's easy to end up picking a side in that argument instead of actually looking at what you're building.
+
+I went through this with MzansiLearn. My first instinct was React with Vite — it's fast, the dev server starts almost instantly, and the setup gets out of your way quickly. But once I sat down and actually wrote out what the project needed, it became pretty clear that Next.js was the better fit. Not because it's objectively the superior framework, but because it matched the shape of what I was building.
+
+## Start with the requirements, not the framework
+
+Before touching any config files, I wrote down what the app actually had to do: user authentication, protected routes, a PostgreSQL database behind it, server-side rendering, API endpoints, form validation, a UI that didn't fall apart on mobile, and something that could scale and actually ship to production.
+
+Reading that list back, one thing was obvious — this wasn't a frontend project with a database attached. It was a full-stack application, and that changes which tool makes sense.
+
+## When React + Vite is still the right call
+
+I want to be clear that Vite isn't the thing I'm arguing against here. For a huge range of projects it's genuinely one of the best options available — the dev server is fast in a way that's hard to overstate once you're used to it, there's almost no configuration tax, and it stays out of your way. If I were building a portfolio site, an admin dashboard sitting on top of an existing API, a marketing page, or anything mostly static, I'd reach for it without much hesitation. For frontend-only work, it's hard to beat.
+
+## Where the project stopped being "just frontend"
+
+As I got further into building MzansiLearn, it became obvious that most of the actual complexity wasn't in the UI at all. It was in things like registration, secure login, password hashing, email verification, password resets, session management, and keeping certain routes locked down until someone was authenticated. All backend concerns.
+
+With React + Vite, that would have meant bringing in something like Express or Fastify to handle the server side — which is a completely reasonable setup, plenty of production apps look exactly like that. But it also means two repositories, two dev servers running side by side, separate deployments, CORS to configure, an API contract to keep in sync, and auth logic that now has to work consistently across two codebases instead of one. None of that is hard exactly, it's just more surface area to maintain, and for a solo project I wanted to spend that time on features instead of plumbing.
+
+## Why Next.js won out
+
+Next.js let me fold all of that into one project — pages, API routes, server and client components, middleware, auth, database access, all living together instead of being split across services. That sounds like a small thing until you're actually building, and you realize you've stopped thinking about how two applications talk to each other and started just thinking about the feature in front of you.
+
+## Server Components actually changed how I think about React
+
+This was the part that took the longest to click, but it was worth it. The traditional React data-fetching flow looks roughly like this: the browser fires off a request, it hits an API, the API talks to a database, and the response has to travel all the way back before anything renders.
+
+With Server Components, a lot of that collapses. The component itself can talk to the database directly on the server and hand the browser rendered HTML, no round trip through a separate API layer for data the page needed anyway. Less JavaScript shipped to the client, faster first paint, and a smaller attack surface since sensitive logic never has to leave the server in the first place.
+
+Figuring out where the line sits between a Server Component and a Client Component took some trial and error — I definitely over-used "use client" early on out of habit — but once it settled in, it genuinely changed how I structure React apps, Next.js or not.
+
+## The parts I didn't have to build myself
+
+What surprised me most was how much Next.js just handles by default. File-based routing, nested layouts, error boundaries, loading states, image optimization, middleware, route handlers, all the rendering strategy stuff — it's there out of the box instead of being five separate libraries I'd have to wire together and keep updated. Practically, that meant less time in config files and more time actually building MzansiLearn.
+
+## It wasn't all smooth
+
+I don't want to make this sound like there was no cost. The App Router brings a genuinely different mental model — Server Components, Client Components, Server Actions, route handlers, caching behavior that isn't always obvious at first glance. There were a few afternoons where I had to just stop and think hard about where a piece of code was actually going to run before writing another line, which isn't something you have to think about nearly as much with a plain React + Vite setup.
+
+The learning curve is real. But it's the kind of learning curve that leaves you understanding modern React noticeably better on the other side of it, not just knowing one framework's quirks.
+
+## So would I still reach for React + Vite?
+
+Yes, without question — just not for this. If I were building something that's mostly a frontend consuming an existing API, Vite would still be near the top of my list. It's fast, it's light, and it doesn't make any assumptions about your backend. The point isn't that one framework beats the other in general; it's that they're built for different shapes of problem.
+
+## Final thoughts
+
+If there's one thing building MzansiLearn reinforced for me, it's that the technology choice should come after you understand the problem, not before. This project needed real authentication, server-side rendering, API routes, a database, and room to grow — Next.js gave me all of that inside one codebase instead of several.
+
+Would React + Vite have worked? Sure, with the right backend bolted on. Would that have meant more moving parts to maintain? Also yes. In the end this wasn't about chasing whatever's trending — it was about matching the tool to the job, which is the same question I plan on asking myself at the start of every project from here on out.

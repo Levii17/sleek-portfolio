@@ -76,5 +76,3 @@ export const skillsGrid: SkillGridItem[] = [
   { name: 'GitHub', href: 'https://github.com/', icon: <Github /> },
   { name: 'AWS', href: 'https://aws.amazon.com/', icon: <AWS /> },
 ];
-
-export default skillsGrid;
