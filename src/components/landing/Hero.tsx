@@ -4,15 +4,16 @@ import { heroConfig, socialLinks } from '@/config/Hero';
 import { spotifyConfig } from '@/config/Spotify';
 import { useHapticFeedback } from '@/hooks/use-haptic-feedback';
 import { useUmami } from '@/hooks/use-umami';
-import type { SpotifyTrack } from '@/lib/spotify';
 import { cn } from '@/lib/utils';
 import { Disc3, Pause, Play } from 'lucide-react';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import Container from '../common/Container';
 import { RevealOnScroll } from '../common/RevealOnScroll';
+import { useSpotifyPlayer } from '../common/SpotifyPlayerProvider';
+import CV from '../svgs/CV';
 import Spotify from '../svgs/Spotify';
 
 // 1. Define explicit props interface for SocialButton
@@ -105,39 +106,17 @@ export default function Hero() {
   const { triggerHaptic, isMobile } = useHapticFeedback();
   const { trackEvent } = useUmami();
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const {
+    song,
+    artists,
+    songUrl,
+    hasTrackLink,
+    isLive,
+    previewPlaying,
+    togglePreview,
+  } = useSpotifyPlayer();
 
-  const [track, setTrack] = useState<SpotifyTrack | null>(null);
-  const [previewPlaying, setPreviewPlaying] = useState(false);
-  const [showEmbed, setShowEmbed] = useState(false);
-
-  useEffect(() => {
-    let ignore = false;
-
-    fetch('/api/spotify')
-      .then((res) => res.json())
-      .then((data: { track: SpotifyTrack | null }) => {
-        if (!ignore) setTrack(data.track);
-      })
-      .catch(() => {});
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  const song = track?.title ?? spotifyConfig.song;
-  const artists = track?.artist ?? spotifyConfig.artists;
-  const previewUrl = track?.previewUrl ?? spotifyConfig.previewUrl;
-  const trackId = track?.trackId ?? null;
-  const songUrl = track?.songUrl || spotifyConfig.url || '';
-  const hasTrackLink =
-    Boolean(songUrl) &&
-    songUrl !== 'https://open.spotify.com/' &&
-    songUrl !== 'https://open.spotify.com';
-  const isLive = track?.isPlaying ?? false;
-
-  const togglePreview = () => {
+  const handleTogglePreview = () => {
     if (isMobile()) {
       triggerHaptic('selection');
     }
@@ -151,28 +130,7 @@ export default function Hero() {
       },
     });
 
-    if (previewUrl) {
-      // Don't toggle previewPlaying manually here — the audio element's
-      // onPlay/onPause/onEnded handlers below keep it in sync with what's
-      // actually happening, so a failed/interrupted play() doesn't leave
-      // the UI showing "playing" when nothing is audible.
-      if (previewPlaying) {
-        audioRef.current?.pause();
-      } else {
-        audioRef.current?.play().catch(() => setPreviewPlaying(false));
-      }
-      return;
-    }
-
-    if (trackId) {
-      setShowEmbed((prev) => !prev);
-      setPreviewPlaying((prev) => !prev);
-      return;
-    }
-
-    if (hasTrackLink) {
-      window.open(songUrl, '_blank', 'noopener,noreferrer');
-    }
+    togglePreview();
   };
 
   return (
@@ -229,7 +187,7 @@ export default function Hero() {
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={togglePreview}
+                  onClick={handleTogglePreview}
                   aria-label={previewPlaying ? 'Pause preview' : 'Play preview'}
                   className="bg-background/80 hover:bg-background/100 flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 text-green-600 transition dark:border-white/10"
                 >
@@ -268,33 +226,6 @@ export default function Hero() {
                   }
                 />
               </div>
-
-              {previewUrl && (
-                <audio
-                  key={previewUrl}
-                  ref={audioRef}
-                  src={previewUrl}
-                  preload="none"
-                  className="hidden"
-                  onPlay={() => setPreviewPlaying(true)}
-                  onPause={() => setPreviewPlaying(false)}
-                  onEnded={() => setPreviewPlaying(false)}
-                  onError={() => setPreviewPlaying(false)}
-                />
-              )}
-
-              {showEmbed && trackId && !previewUrl && (
-                <iframe
-                  key={trackId}
-                  src={`https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`}
-                  width="100%"
-                  height="88"
-                  style={{ borderRadius: 20 }}
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title="Spotify player"
-                />
-              )}
             </div>
           </div>
         )}
@@ -335,6 +266,17 @@ export default function Hero() {
                 </div>
               );
             })}
+
+            {/* Resume Button mapped to your specific Next.js page */}
+            <div className="inline-block">
+              <SocialButton href="/resume">
+                {/* 2. Wrap CV in a styling span rather than passing className directly */}
+                <span className="flex size-3.5 items-center justify-center [&>svg]:size-full">
+                  <CV />
+                </span>
+                Resume
+              </SocialButton>
+            </div>
           </div>
         </div>
       </RevealOnScroll>

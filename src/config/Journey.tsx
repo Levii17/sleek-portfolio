@@ -18,7 +18,7 @@ export const journeyItems: JourneyItem[] = [
   },
   {
     name: 'Certificates',
-    description: 'A curated list of certificates.',
+    description: 'A curated list of tech certificates.',
     icon: CertificateIcon,
     href: '/journey/certificates',
   },

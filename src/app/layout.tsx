@@ -3,6 +3,7 @@ import Footer from '@/components/common/Footer';
 import Navbar from '@/components/common/Navbar';
 import OnekoCat from '@/components/common/OnekoCat';
 import { Quote } from '@/components/common/Quote';
+import { SpotifyPlayerProvider } from '@/components/common/SpotifyPlayerProvider';
 import { ThemeProvider } from '@/components/common/ThemeProviders';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import ReactLenis from 'lenis/react';
@@ -28,11 +29,13 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <ReactLenis root>
-              <Navbar />
-              {children}
-              <OnekoCat />
-              <Quote />
-              <Footer />
+              <SpotifyPlayerProvider>
+                <Navbar />
+                {children}
+                <OnekoCat />
+                <Quote />
+                <Footer />
+              </SpotifyPlayerProvider>
               <UmamiAnalytics />
             </ReactLenis>
           </ThemeProvider>
