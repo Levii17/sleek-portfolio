@@ -3,7 +3,6 @@ export type Interest = {
   description: string;
 };
 
-// TODO: replace these with your actual interests — placeholders for now.
 export const interests: Interest[] = [
   {
     title: 'Formula 1',
@@ -14,8 +13,14 @@ export const interests: Interest[] = [
     description: 'Casual games and studying openings.',
   },
   {
-    title: 'Photography',
-    description: 'Street and landscape shots on weekends.',
+    title: 'Anime',
+    description:
+      'Watching anime and reading manga, especially action and psychological genres.',
+  },
+  {
+    title: 'Gaming',
+    description:
+      'FIFA / FC | Call of Duty | GTA | God of War | Valorant | Need for Speed | The Witcher | Assassin’s Creed | Resident Evil | The Last of Us | Cyberpunk 2077 | Elden Ring | Horizon Zero Dawn | Red Dead Redemption 2 | Ghost of Tsushima | Spider-Man | Uncharted',
   },
 ];
 

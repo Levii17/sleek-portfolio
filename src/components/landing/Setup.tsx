@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import React from 'react';
 
 import Container from '../common/Container';
+import { RevealOnScroll } from '../common/RevealOnScroll';
 import SectionHeading from '../common/SectionHeading';
 import { TrackedLink } from '../common/TrackedLink';
 import Code from '../svgs/Code';
@@ -26,8 +27,10 @@ const setup = [
 export default function Setup() {
   return (
     <Container className="mt-10">
-      <SectionHeading subHeading="Development" heading="Setup" />
-      <div className="mt-8 flex flex-col gap-4">
+      <RevealOnScroll>
+        <SectionHeading subHeading="Development" heading="Setup" />
+      </RevealOnScroll>
+      <RevealOnScroll className="mt-8 flex flex-col gap-4" delay={0.05}>
         {setup.map((item) => (
           <TrackedLink
             className="group"
@@ -52,7 +55,7 @@ export default function Setup() {
             </Card>
           </TrackedLink>
         ))}
-      </div>
+      </RevealOnScroll>
     </Container>
   );
 }

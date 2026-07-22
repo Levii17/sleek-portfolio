@@ -5,7 +5,7 @@ import CTA from '@/components/landing/CTA';
 import Hero from '@/components/landing/Hero';
 import Journey from '@/components/landing/Journey';
 import Work from '@/components/landing/Projects';
-import Setup from '@/components/landing/Setup';
+// import Setup from '@/components/landing/Setup';
 import SkillsGrid from '@/components/landing/SkillsGrid';
 import React from 'react';
 
@@ -18,7 +18,7 @@ export default function page() {
       {/* <Github /> */}
       <Blog />
       <Journey />
-      <Setup />
+      {/* <Setup /> */}
       <CTA />
     </Container>
   );

@@ -1,4 +1,4 @@
-import AWS from '@/components/technologies/AWS';
+// import AWS from '@/components/technologies/AWS';
 import Bun from '@/components/technologies/Bun';
 import CSS from '@/components/technologies/CSS';
 import ExpressJs from '@/components/technologies/ExpressJs';
@@ -74,5 +74,5 @@ export const skillsGrid: SkillGridItem[] = [
   { name: 'Postman', href: 'https://postman.com/', icon: <Postman /> },
   { name: 'Vercel', href: 'https://vercel.com/', icon: <Vercel /> },
   { name: 'GitHub', href: 'https://github.com/', icon: <Github /> },
-  { name: 'AWS', href: 'https://aws.amazon.com/', icon: <AWS /> },
+  // { name: 'AWS', href: 'https://aws.amazon.com/', icon: <AWS /> },
 ];

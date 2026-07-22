@@ -1,10 +1,9 @@
 'use client';
 
-import { useInView } from '@/hooks/use-in-view';
-import { cn } from '@/lib/utils';
 import { BlogPostPreview } from '@/types/blog';
 import { Link } from 'next-view-transitions';
 
+import { RevealOnScroll } from '../common/RevealOnScroll';
 import { TrackedLink } from '../common/TrackedLink';
 import ArrowRight from '../svgs/ArrowRight';
 import Calender from '../svgs/Calender';
@@ -15,16 +14,8 @@ interface BlogListPreviewProps {
 }
 
 export function BlogListPreview({ posts }: BlogListPreviewProps) {
-  const { ref, inView } = useInView<HTMLDivElement>();
-
   return (
-    <div
-      ref={ref}
-      className={cn('animate-in-up-on-view flex flex-col gap-2', {
-        'in-view': inView,
-      })}
-      style={{ transitionDelay: '0.05s' }}
-    >
+    <RevealOnScroll className="flex flex-col gap-2" delay={0.05}>
       <div className="divide-border flex flex-col divide-y">
         {posts.map(({ slug, frontmatter }, index) => {
           const { title, description, date } = frontmatter;
@@ -99,6 +90,6 @@ export function BlogListPreview({ posts }: BlogListPreviewProps) {
           <Link href="/blog">Show all blogs</Link>
         </Button>
       </div>
-    </div>
+    </RevealOnScroll>
   );
 }

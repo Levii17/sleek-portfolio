@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import React from 'react';
 
 import Container from '../common/Container';
+import { RevealOnScroll } from '../common/RevealOnScroll';
 import SectionHeading from '../common/SectionHeading';
 import { TrackedLink } from '../common/TrackedLink';
 import { Card } from '../ui/card';
@@ -10,8 +11,10 @@ import { Card } from '../ui/card';
 export default function Journey() {
   return (
     <Container className="mt-10">
-      <SectionHeading subHeading="About" heading="Me" />
-      <div className="mt-8 flex flex-col gap-4">
+      <RevealOnScroll>
+        <SectionHeading subHeading="About" heading="Me" />
+      </RevealOnScroll>
+      <RevealOnScroll className="mt-8 flex flex-col gap-4" delay={0.05}>
         {journeyItems.map((item) => (
           <TrackedLink
             className="group"
@@ -45,7 +48,7 @@ export default function Journey() {
             </Card>
           </TrackedLink>
         ))}
-      </div>
+      </RevealOnScroll>
     </Container>
   );
 }

@@ -1,4 +1,5 @@
 import Github from '@/components/svgs/Github';
+import Instagram from '@/components/svgs/Instagram';
 import LinkedIn from '@/components/svgs/LinkedIn';
 import Mail from '@/components/svgs/Mail';
 import X from '@/components/svgs/X';
@@ -9,22 +10,6 @@ export const heroConfig = {
   title: '21y • eng • cs',
   avatar: '/assets/logo.png',
   description: 'Tryna build cool stuff, ship side projects, and learn.',
-
-  // Buttons Configuration
-  buttons: [
-    {
-      variant: 'outline',
-      text: 'Resume / CV',
-      href: '/resume',
-      icon: 'CV',
-    },
-    {
-      variant: 'default',
-      text: 'Get in touch',
-      href: '/contact',
-      icon: 'Chat',
-    },
-  ],
 };
 
 // Social Links Configuration
@@ -35,8 +20,13 @@ export const socialLinks = [
     icon: <Github />,
   },
   {
-    name: 'Twitter',
+    name: 'Instagram',
     href: 'https://www.instagram.com/x_mxolisi_x/',
+    icon: <Instagram />,
+  },
+  {
+    name: 'Twitter',
+    href: 'https://www.x.com/x_mxolisi_x/',
     icon: <X />,
   },
   {

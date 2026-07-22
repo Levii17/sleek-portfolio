@@ -4,11 +4,11 @@ import Monitor from '@/components/svgs/devices/Monitor';
 // TODO: replace with your real devices
 export const devices = [
   {
-    name: 'Your laptop (e.g. brand, model, specs)',
+    name: 'Acer Aspire A115-32 | Intel® Celeron® N4500 × 2)',
     icon: <Laptop className="size-4" />,
   },
   {
-    name: 'Your monitor',
+    name: '🤧️',
     icon: <Monitor className="size-4" />,
   },
 ];

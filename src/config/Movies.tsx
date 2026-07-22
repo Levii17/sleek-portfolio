@@ -4,16 +4,16 @@ export type Movie = {
 };
 
 export const movies: Movie[] = [
-  { title: 'Ford v Ferrari', year: '2019' },
-  { title: 'Whiplash', year: '2014' },
+  { title: 'Dead Poets Society', year: '1989' },
+  { title: 'Equilibrium', year: '2002' },
   { title: 'The Social Network', year: '2010' },
-  { title: 'Rush', year: '2013' },
-  { title: 'Steve Jobs', year: '2015' },
-  { title: 'The Founder', year: '2016' },
-  { title: 'Silicon Valley', year: '2014' },
-  { title: 'Black Swan', year: '2010' },
-  { title: 'The Big Short', year: '2015' },
-  { title: 'F1', year: '2025' },
+  { title: 'Inception', year: '2010' },
+  { title: 'The Blacklist', year: '2013' },
+  { title: 'Interstellar', year: '2014' },
+  { title: 'Mr. Robot', year: '2015' },
+  { title: 'Dark', year: '2017' },
+  { title: 'Arcane', year: '2021' },
+  { title: 'Cyberpunk: Edgerunners', year: '2022' },
 ];
 
 const moviesConfig = {

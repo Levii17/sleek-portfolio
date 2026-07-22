@@ -12,7 +12,7 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 import Container from '../common/Container';
-import CV from '../svgs/CV';
+import { RevealOnScroll } from '../common/RevealOnScroll';
 import Spotify from '../svgs/Spotify';
 
 // 1. Define explicit props interface for SocialButton
@@ -177,7 +177,7 @@ export default function Hero() {
 
   return (
     <Container className="mx-auto max-w-5xl">
-      <div className="mt-8 flex flex-col space-y-6">
+      <RevealOnScroll className="mt-8 flex flex-col space-y-6">
         {/* Header Block (Image, Name, Title) */}
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
           {/* Avatar */}
@@ -300,7 +300,7 @@ export default function Hero() {
         )}
 
         {/* Social Links */}
-        <div className="mt-2 mb-8 w-full">
+        <div className="mt-2 mb-4 w-full">
           <h2 className="mb-2.5 text-[14px] text-zinc-500 dark:text-zinc-400">
             Here are my{' '}
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
@@ -335,20 +335,9 @@ export default function Hero() {
                 </div>
               );
             })}
-
-            {/* Resume Button mapped to your specific Next.js page */}
-            <div className="inline-block">
-              <SocialButton href="/resume">
-                {/* 2. Wrap CV in a styling span rather than passing className directly */}
-                <span className="flex size-3.5 items-center justify-center [&>svg]:size-full">
-                  <CV />
-                </span>
-                Resume
-              </SocialButton>
-            </div>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </Container>
   );
 }

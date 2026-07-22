@@ -2,6 +2,7 @@ import { skillsGrid } from '@/config/SkillsGrid';
 import React from 'react';
 
 import Container from '../common/Container';
+import { RevealOnScroll } from '../common/RevealOnScroll';
 import SectionHeading from '../common/SectionHeading';
 import { TrackedLink } from '../common/TrackedLink';
 
@@ -12,9 +13,11 @@ export default function SkillsGrid() {
         id="skills"
         className="relative mt-4 mb-0 w-full scroll-mt-24 pb-12"
       >
-        <SectionHeading subHeading="My" heading="Toolbox" />
+        <RevealOnScroll>
+          <SectionHeading subHeading="What I work with" heading="Skills" />
+        </RevealOnScroll>
 
-        <div className="mt-8 flex flex-wrap gap-2">
+        <RevealOnScroll className="mt-8 flex flex-wrap gap-2" delay={0.05}>
           {skillsGrid.map((skill) => (
             <TrackedLink
               key={skill.name}
@@ -45,7 +48,7 @@ export default function SkillsGrid() {
               </span>
             </TrackedLink>
           ))}
-        </div>
+        </RevealOnScroll>
       </section>
     </Container>
   );
