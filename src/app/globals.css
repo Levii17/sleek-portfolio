@@ -175,6 +175,57 @@
 
 /* Removed global View Transition API overrides to allow Skiper toggle styles to apply */
 
+/* Scroll-triggered fade-up reveal, driven by the useInView hook */
+.animate-in-up-on-view {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.animate-in-up-on-view.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual list items fade up with a stagger once their closest
+   .animate-in-up-on-view ancestor is in view (see the inline animation-delay
+   set per item). */
+.blog-list-item {
+  opacity: 0;
+  animation: blog-list-item-fade-up 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.in-view .blog-list-item {
+  animation-play-state: running;
+}
+
+@keyframes blog-list-item-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in-up-on-view {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .blog-list-item {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 /* Custom button inner shadow */
 .btn-inner-shadow {
   box-shadow:
