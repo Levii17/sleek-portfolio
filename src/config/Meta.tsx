@@ -142,6 +142,22 @@ export const pageMetadata: Record<string, PageMeta> = {
     ogImage: '/meta/setup.png',
     twitterCard: 'summary_large_image',
   },
+
+  // Movies page
+  '/movies': {
+    title: 'Movies - Favorites & Inspirations',
+    description: 'Movies and shows that have inspired and entertained me.',
+    keywords: ['movies', 'shows', 'watchlist', 'favorites'],
+    twitterCard: 'summary_large_image',
+  },
+
+  // Interests page
+  '/interests': {
+    title: 'Interests - Beyond the Code',
+    description: 'Things outside of code that keep me curious.',
+    keywords: ['interests', 'hobbies'],
+    twitterCard: 'summary_large_image',
+  },
 };
 
 // Helper function to get metadata for a specific page

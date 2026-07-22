@@ -1,5 +1,5 @@
 import { CertificateIcon } from '@phosphor-icons/react/dist/ssr';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, Clapperboard, Heart } from 'lucide-react';
 import React from 'react';
 
 export type JourneyItem = {
@@ -21,6 +21,18 @@ export const journeyItems: JourneyItem[] = [
     description: 'A curated list of certificates.',
     icon: CertificateIcon,
     href: '/journey/certificates',
+  },
+  {
+    name: 'Movies',
+    description: 'Movies and shows that have inspired and entertained me.',
+    icon: Clapperboard,
+    href: '/movies',
+  },
+  {
+    name: 'Interests',
+    description: 'Things outside of code that keep me curious.',
+    icon: Heart,
+    href: '/interests',
   },
 ];
 
