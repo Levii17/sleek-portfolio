@@ -66,7 +66,7 @@ export default function CertificatesPage() {
             Certificates & Achievements
           </h1>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            A curated list of my certificates and notable achievements.
+            A curated list of my certificates.
           </p>
         </div>
         <Separator />

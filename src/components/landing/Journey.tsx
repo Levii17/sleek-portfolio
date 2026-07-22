@@ -10,7 +10,7 @@ import { Card } from '../ui/card';
 export default function Journey() {
   return (
     <Container className="mt-10">
-      <SectionHeading subHeading="My" heading="Journey" />
+      <SectionHeading subHeading="About" heading="Me" />
       <div className="mt-8 flex flex-col gap-4">
         {journeyItems.map((item) => (
           <TrackedLink
