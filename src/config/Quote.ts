@@ -13,8 +13,8 @@ export const quotes = [
     author: 'Bhagavad Gita',
   },
   {
-    quote: `Arise, awake, and stop not till the goal is reached.`,
-    author: 'Katha Upanishad',
+    quote: `I hate perfection. To be perfect is to be unable to improve any further.`,
+    author: 'Kurotsuchi Mayuri, Bleach',
   },
   {
     quote: `If the pain doesn't kill me, it will only make me stronger.`,
