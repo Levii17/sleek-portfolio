@@ -2,6 +2,7 @@ import { skillsGrid } from '@/config/SkillsGrid';
 import React from 'react';
 
 import Container from '../common/Container';
+import SectionHeading from '../common/SectionHeading';
 import { TrackedLink } from '../common/TrackedLink';
 
 export default function SkillsGrid() {
@@ -11,18 +12,9 @@ export default function SkillsGrid() {
         id="skills"
         className="relative mt-4 mb-0 w-full scroll-mt-24 pb-12"
       >
-        <div className="relative mb-2 w-full py-3">
-          <div className="flex flex-col gap-2">
-            <p className="text-[11px] tracking-[0.24em] text-[#909092] uppercase dark:text-[#9b9b9b]">
-              What I work with
-            </p>
-            <h2 className="text-2xl font-semibold tracking-tight text-[#100F0F] sm:text-[1.4rem] dark:text-[#f5f5f5]">
-              Skills
-            </h2>
-          </div>
-        </div>
+        <SectionHeading subHeading="My" heading="Toolbox" />
 
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-wrap gap-2">
           {skillsGrid.map((skill) => (
             <TrackedLink
               key={skill.name}
