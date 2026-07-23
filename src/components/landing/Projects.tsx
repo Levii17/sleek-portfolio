@@ -40,7 +40,7 @@ export default function Projects() {
         className="mt-8 flex w-full flex-col items-start"
         delay={0.05}
       >
-        <div className="mb-5 flex flex-wrap gap-2 rounded-full border border-[#E5E5E5] bg-[#F9F9F9] p-1 dark:border-[#2a2a2a] dark:bg-[#111]">
+        <div className="mb-5 flex flex-wrap gap-1 rounded-full border border-[#E5E5E5] bg-[#F9F9F9] p-1 sm:gap-2 dark:border-[#2a2a2a] dark:bg-[#111]">
           {categories.map((category) => {
             const isActive = category.value === activeCategory;
             return (

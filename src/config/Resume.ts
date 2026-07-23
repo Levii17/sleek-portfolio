@@ -12,7 +12,7 @@ export const resumes: ResumeVariant[] = [
   },
   {
     id: 'artisan',
-    label: 'Artisan Resume',
+    label: 'Resume',
     url: 'https://drive.google.com/file/d/1KsP88Nc-lTwgk221WdEtvMl28DRKdOpW/preview',
   },
 ];

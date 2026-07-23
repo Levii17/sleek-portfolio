@@ -15,10 +15,10 @@ export default function page() {
       <Hero />
       <SkillsGrid />
       <Work />
-      {/* <Github /> */}
-      <Blog />
       <Journey />
+      <Blog />
       {/* <Setup /> */}
+      {/* <Github /> */}
       <CTA />
     </Container>
   );

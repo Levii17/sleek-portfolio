@@ -12,7 +12,7 @@ export const ctaConfig = {
 
   // CTA button settings
   linkText: 'Book a Free Call',
-  calLink: 'mxolisi-bhotile-zlmdmx/meeting',
+  calLink: 'mxolisi/30min',
 
   // Pre-text message
   preText: "Hey, you scrolled this far, let's talk.",
