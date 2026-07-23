@@ -5,6 +5,7 @@ import { BookOpen } from 'lucide-react';
 import { Link } from 'next-view-transitions';
 
 import Container from '../common/Container';
+import { PageHeader } from '../common/PageHeader';
 
 export default function Books() {
   const noteSlugs = getPublishedBookNoteSlugs();
@@ -12,17 +13,12 @@ export default function Books() {
   return (
     <Container className="mt-10">
       <section className="space-y-8 pt-8" aria-labelledby="books-heading">
-        <div className="animate-in-up border-border space-y-3 border-b pb-8">
-          <h2
-            id="books-heading"
-            className="text-foreground text-2xl font-bold tracking-tight"
-          >
-            Books
-          </h2>
-          <p className="text-secondary max-w-2xl">
-            A collection of books that have influenced my thinking and growth.
-          </p>
-        </div>
+        <PageHeader
+          headingId="books-heading"
+          title="Books"
+          description="A collection of books that have influenced my thinking and growth."
+          trackId="books"
+        />
 
         <div className="space-y-12">
           {bookCategories.map((category) => (

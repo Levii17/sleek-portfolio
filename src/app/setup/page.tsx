@@ -1,6 +1,6 @@
 import Container from '@/components/common/Container';
+import { PageHeader } from '@/components/common/PageHeader';
 import { TrackedLink } from '@/components/common/TrackedLink';
-import { Separator } from '@/components/ui/separator';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { settingsJson, steps } from '@/config/Setup';
 import { Download, ExternalLink, FileText } from 'lucide-react';
@@ -24,18 +24,14 @@ export const metadata: Metadata = {
 
 export default function SetupPage() {
   return (
-    <Container className="py-8 md:py-16">
-      <div className="space-y-6 md:space-y-8">
-        {/* Header */}
-        <div className="space-y-3 text-center md:space-y-4">
-          <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-            Setup
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-2xl px-4 text-base md:text-lg">
-            My VS Code extensions and settings.
-          </p>
-        </div>
-        <Separator />
+    <Container className="mt-10">
+      <section className="space-y-8 pt-8" aria-labelledby="setup-heading">
+        <PageHeader
+          headingId="setup-heading"
+          title="Setup"
+          description="My VS Code extensions and settings."
+          trackId="setup"
+        />
 
         {/* Steps */}
         <div className="space-y-8 md:space-y-12">
@@ -144,7 +140,7 @@ export default function SetupPage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

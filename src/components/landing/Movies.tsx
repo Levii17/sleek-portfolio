@@ -5,6 +5,7 @@ import { Clapperboard } from 'lucide-react';
 import { Link } from 'next-view-transitions';
 
 import Container from '../common/Container';
+import { PageHeader } from '../common/PageHeader';
 
 export default function Movies() {
   const noteSlugs = getPublishedMovieNoteSlugs();
@@ -12,17 +13,12 @@ export default function Movies() {
   return (
     <Container className="mt-10">
       <section className="space-y-8 pt-8" aria-labelledby="movies-heading">
-        <div className="animate-in-up border-border space-y-3 border-b pb-8">
-          <h1
-            id="movies-heading"
-            className="text-foreground text-2xl font-bold tracking-tight"
-          >
-            Movies
-          </h1>
-          <p className="text-secondary max-w-2xl">
-            Movies and shows that have inspired and entertained me.
-          </p>
-        </div>
+        <PageHeader
+          headingId="movies-heading"
+          title="Movies"
+          description="Movies and shows that have inspired and entertained me."
+          trackId="movies"
+        />
 
         <div className="space-y-12">
           {movieCategories.map((category) => (

@@ -1,7 +1,8 @@
 import Container from '@/components/common/Container';
-import { Separator } from '@/components/ui/separator';
+import { PageHeader } from '@/components/common/PageHeader';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { generateMetadata as getMetadata } from '@/config/Meta';
-import { resumeConfig } from '@/config/Resume';
+import { resumes } from '@/config/Resume';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -22,24 +23,41 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <Container className="py-16">
-      <div className="space-y-8">
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-            Resume
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            My resume.
-          </p>
-        </div>
-        <Separator />
-        <div className="mx-auto max-w-2xl">
-          <iframe
-            src={resumeConfig.url}
-            className="min-h-screen w-full"
-          ></iframe>
-        </div>
-      </div>
+    <Container className="mt-10">
+      <section className="space-y-8 pt-8" aria-labelledby="resume-heading">
+        <PageHeader
+          headingId="resume-heading"
+          title="Resume"
+          description="My resumes, pick the version that fits what you're looking for."
+          trackId="resume"
+        />
+
+        <Tabs defaultValue={resumes[0].id} className="mx-auto max-w-2xl">
+          <TabsList>
+            {resumes.map((resume) => (
+              <TabsTrigger key={resume.id} value={resume.id}>
+                {resume.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {resumes.map((resume) => (
+            <TabsContent key={resume.id} value={resume.id}>
+              {resume.url ? (
+                <iframe
+                  src={resume.url}
+                  className="min-h-screen w-full"
+                  title={`${resume.label} preview`}
+                />
+              ) : (
+                <div className="border-border bg-muted/30 text-muted-foreground flex min-h-[50vh] items-center justify-center rounded-lg border border-dashed text-sm">
+                  {resume.label} coming soon.
+                </div>
+              )}
+            </TabsContent>
+          ))}
+        </Tabs>
+      </section>
     </Container>
   );
 }

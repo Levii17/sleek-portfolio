@@ -2,8 +2,8 @@
 
 import { BlogList } from '@/components/blog/BlogList';
 import Container from '@/components/common/Container';
+import { PageHeader } from '@/components/common/PageHeader';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { useHapticFeedback } from '@/hooks/use-haptic-feedback';
 import { useUmami } from '@/hooks/use-umami';
 import { BlogPostPreview } from '@/types/blog';
@@ -87,19 +87,14 @@ export function BlogPageClient({
   };
 
   return (
-    <Container className="py-16">
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-            Blogs
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Thoughts, tutorials, and insights on engineering, and programming.
-          </p>
-        </div>
-
-        <Separator />
+    <Container className="mt-10">
+      <section className="space-y-8 pt-8" aria-labelledby="blog-heading">
+        <PageHeader
+          headingId="blog-heading"
+          title="Blogs"
+          description="Thoughts, tutorials, and insights on engineering, and programming."
+          trackId="blog"
+        />
 
         {/* Tags */}
         {initialTags.length > 0 && (
@@ -154,7 +149,7 @@ export function BlogPageClient({
 
           <BlogList posts={filteredPosts} />
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

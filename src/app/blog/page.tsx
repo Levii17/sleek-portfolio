@@ -1,5 +1,4 @@
 import Container from '@/components/common/Container';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { getAllTags, getPublishedBlogPosts } from '@/lib/blog';
@@ -29,15 +28,14 @@ export const generateMetadata = (): Metadata => {
 
 function BlogPageLoading() {
   return (
-    <Container className="py-16">
-      <div className="space-y-8">
+    <Container className="mt-10">
+      <div className="space-y-8 pt-8">
         {/* Header Skeleton */}
-        <div className="space-y-4 text-center">
-          <Skeleton className="mx-auto h-12 w-32" />
-          <Skeleton className="mx-auto h-6 w-96" />
+        <div className="space-y-4 pb-8">
+          <Skeleton className="h-8 w-24" />
+          <Skeleton className="h-8 w-40" />
+          <Skeleton className="h-6 w-96" />
         </div>
-
-        <Separator />
 
         {/* Tags Skeleton */}
         <div className="space-y-4">

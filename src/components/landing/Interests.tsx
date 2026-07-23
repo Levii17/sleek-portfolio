@@ -2,23 +2,19 @@ import { interests } from '@/config/Interests';
 import React from 'react';
 
 import Container from '../common/Container';
+import { PageHeader } from '../common/PageHeader';
 import { Card, CardContent } from '../ui/card';
-import { Separator } from '../ui/separator';
 
 export default function Interests() {
   return (
     <Container className="mt-10">
-      <section className="space-y-4 pt-8">
-        <div className="animate-in-up pb-8">
-          <h1 className="text-2xl font-bold tracking-tight">Interests</h1>
-          <p className="text-secondary max-w-2xl">
-            Things outside of code that keep me curious.
-          </p>
-        </div>
-
-        <div className="animate-in-up">
-          <Separator />
-        </div>
+      <section className="space-y-8 pt-8" aria-labelledby="interests-heading">
+        <PageHeader
+          headingId="interests-heading"
+          title="Interests"
+          description="Things outside of code that keep me curious."
+          trackId="interests"
+        />
 
         <div className="animate-in-up space-y-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">

@@ -1,7 +1,7 @@
 import Container from '@/components/common/Container';
+import { PageHeader } from '@/components/common/PageHeader';
 import { TrackedLink } from '@/components/common/TrackedLink';
 import Monitor from '@/components/svgs/devices/Monitor';
-import { Separator } from '@/components/ui/separator';
 import { devices, software, webExtensions } from '@/config/Gears';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { ArrowUpRight, Puzzle } from 'lucide-react';
@@ -25,18 +25,14 @@ export const metadata: Metadata = {
 
 export default function GearsPage() {
   return (
-    <Container className="py-16">
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-            Gears
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Hardware and tools I use day-to-day.
-          </p>
-        </div>
-        <Separator />
+    <Container className="mt-10">
+      <section className="space-y-8 pt-8" aria-labelledby="gears-heading">
+        <PageHeader
+          headingId="gears-heading"
+          title="Gears"
+          description="Hardware and tools I use day-to-day."
+          trackId="gears"
+        />
 
         {/* Devices Section */}
         <div className="space-y-4">
@@ -132,7 +128,7 @@ export default function GearsPage() {
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

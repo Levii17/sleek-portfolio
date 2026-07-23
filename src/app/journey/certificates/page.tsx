@@ -1,6 +1,6 @@
 import CertificatesGallery from '@/components/CertificatesGallery';
 import Container from '@/components/common/Container';
-import { Separator } from '@/components/ui/separator';
+import { PageHeader } from '@/components/common/PageHeader';
 import { certificates as configuredCertificates } from '@/config/Achievements';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import fs from 'fs';
@@ -59,17 +59,19 @@ export default function CertificatesPage() {
   const allCertificates = Array.from(map.values());
 
   return (
-    <Container className="py-16">
-      <div className="space-y-8">
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-            Certificates & Achievements
-          </h1>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            A curated list of my tech certificates.
-          </p>
-        </div>
-        <Separator />
+    <Container className="mt-10">
+      <section
+        className="space-y-8 pt-8"
+        aria-labelledby="certificates-heading"
+      >
+        <PageHeader
+          headingId="certificates-heading"
+          title="Certificates & Achievements"
+          description="A curated list of my tech certificates."
+          backHref="/journey"
+          backLabel="Back to Journey"
+          trackId="certificates"
+        />
 
         {/* Certificates */}
         <div className="space-y-6">
@@ -90,7 +92,7 @@ export default function CertificatesPage() {
 
           <CertificatesGallery certificates={allCertificates} />
         </div>
-      </div>
+      </section>
     </Container>
   );
 }
