@@ -1,0 +1,97 @@
+---
+title: 'Perspectiva'
+description: 'A glass-panel GLTF/GLB viewer for inspecting 3D models in the browser, built with Next.js, React Three Fiber, and TypeScript.'
+image: '/project/perspectiva.png'
+technologies:
+[
+'Next.js',
+'TypeScript',
+'React Three Fiber',
+'Three.js',
+'Tailwind CSS',
+'Framer Motion',
+'react-dropzone',
+'Vercel',
+]
+github: 'https://github.com/Levii17/perspectiva'
+live: 'https://perspectiva-five.vercel.app'
+timeline: 'Short solo sprint'
+role: 'Frontend Developer'
+team: 'Solo'
+challenges:
+[
+'Making lighting and shadow presets read as intentional across arbitrary, unpredictable geometry',
+'Auto-fitting models of wildly different native scales into one consistent framing',
+'Building a toolbar that works as a discoverable desktop rail and a usable mobile sheet without two parallel feature sets',
+'Treating every dropped-in file as untrusted input and designing failure paths around that, not just the happy path',
+]
+learnings:
+[
+'Composing real-time 3D scenes with React Three Fiber and drei',
+'Reasoning about performance and shadow techniques in WebGL rather than server-rendered UI',
+'Suspense-based asset loading and blob URL lifecycle management',
+'Scoping deliberately and documenting what I chose not to build, and why',
+'Auditing a client-side app'"'"'s actual attack surface instead of assuming "up to date" means "safe"',
+]
+isPublished: true
+featured: true
+status: 'completed'
+---
+
+# Perspectiva
+
+## Overview
+
+Perspectiva is a GLTF/GLB viewer built into a modular Next.js app. Drop in a `.glb` or `.gltf` file or use the bundled default model, and inspect it with orbit controls, HDR lighting, grid/wireframe toggles, lighting presets, and spring-damped reset animations, all wrapped in a glass-panel UI floating over a drifting aurora backdrop.
+
+## Why I built it
+
+Most of my other projects lean on data I control: a schema, a database, predictable inputs. I wanted something that pushed into real-time rendering instead, a UI that has to react gracefully to whatever arbitrary, unpredictable 3D file someone drags in, rather than rows from a table I designed myself.
+
+## Core features
+
+**Upload and inspection**: drag-and-drop or click-to-browse, validated by extension and an 80MB size cap before a file ever reaches the loader. Orbit controls, a wireframe/grid toggle, and a spring-damped camera reset.
+
+**Lighting**: three presets (soft, studio, dramatic) that swap HDRI environment, exposure, and key/fill/rim intensities together, layered over contact shadows and accumulative shadows for a softer, slightly raytraced-looking ground shadow.
+
+**Handling the unexpected**: a malformed or unparseable file falls back to a placeholder model and an inline error banner instead of a blank screen or a crashed tab.
+
+**Polish**: fullscreen support, an animated theme toggle, and reduced-motion handling in both CSS and the 3D layer. The toolbar itself reshapes: a floating glass rail on desktop, a FAB and sheet on mobile.
+
+## Tech stack
+
+Next.js 15 (App Router, Turbopack), React 19, and strict TypeScript underneath. Tailwind v4's CSS-first `@theme` tokens with `next-themes` for class-based dark/light. `@react-three/fiber` and `@react-three/drei` on top of `three` for the rendering layer. Framer Motion for entrance choreography and micro-interactions, `react-dropzone` for upload. Deployed on Vercel.
+
+## Technical highlights
+
+### Keeping state deliberately small
+
+A single `useReducer` plus Context (`useViewer`) rather than reaching for Zustand or Redux. The state surface, active model, lighting preset, wireframe toggle, is small enough that an external store would be pure overhead.
+
+### Auto-fit instead of assuming scale
+
+Every dropped model gets its bounding box measured on load and is centered and scaled in place to a consistent footprint. A model authored at millimeter scale and one authored at meter scale both read the same way in the viewer, without cloning the scene to do it.
+
+### Failing safe on untrusted input
+
+Every file dropped into Perspectiva is, by definition, untrusted, I don't control what's inside it. A dedicated error boundary catches GLTFLoader parse and load failures and swaps in a fallback model rather than letting a bad file take down the page, and the 80MB cap runs before the file is ever handed to the loader.
+
+### A security pass before shipping, not just a version bump
+
+The app is client-only by design: a dropped file becomes a local blob URL and is parsed entirely in-browser by three.js's loader, so nothing ever touches a server. That meant checking, deliberately, that recent Next.js advisory classes (image-optimizer DoS, Server Action SSRF, middleware bypass) didn't apply here, no API routes, no middleware, no env vars, `next/image` never used, rather than just trusting that a recent version number meant the app was covered.
+
+## Challenges
+
+Getting lighting and shadow presets to look intentional across genuinely different geometry was harder than expected, since every dropped-in model brings its own scale, material set, and polycount. The auto-fit math, centering and uniformly scaling from an arbitrary bounding box, took a few passes to get right for oddly-proportioned models. And building a toolbar that works equally well as a desktop rail and a mobile sheet, without maintaining two separate feature sets, took more iteration than the rest of the UI combined.
+
+## What I learned
+
+Real-time 3D in the browser is a genuinely different discipline from typical CRUD-app frontend work, performance budgets, shadow techniques, and Suspense-driven asset loading all behave differently than server-rendered, data-fetching UIs. It was also a useful exercise in scoping on purpose: writing down what I didn't build model thumbnails in the dropzone, camera-position persistence across file swaps, and why, instead of letting scope creep in quietly.
+
+## Looking ahead
+
+An optional dev-tuning panel (`leva`, gated behind `NODE_ENV === "development"`) isn't wired in yet. The two open items from the original scope are generating model thumbnails in the dropzone via an offscreen render pass, and persisting the camera angle across file swaps instead of resetting to the default framing every time.
+
+## Final thoughts
+
+Perspectiva ended up being less about any single feature and more about handling the unknown gracefully, an arbitrary file, an arbitrary scale, an arbitrary failure mode, while keeping the dependency list and state model as small as the problem actually required.
