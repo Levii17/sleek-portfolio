@@ -1,6 +1,8 @@
 export type Book = {
   title: string;
   author: string;
+  /** Override the auto-generated slug used to look up a book note MDX file. */
+  slug?: string;
 };
 
 export type BookCategory = {
