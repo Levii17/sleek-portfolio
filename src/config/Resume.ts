@@ -8,11 +8,11 @@ export const resumes: ResumeVariant[] = [
   {
     id: 'tech',
     label: 'Tech Resume',
-    url: 'https://drive.google.com/file/d/1RDUFbQsJy6Jm98P5VWoo7m6_pF6nQDFU/preview',
+    url: 'https://drive.google.com/file/d/1sBoqs7poHb952Utd1v5RkV_Z48FMDrn4/preview',
   },
   {
     id: 'artisan',
     label: 'Resume',
-    url: 'https://drive.google.com/file/d/1KsP88Nc-lTwgk221WdEtvMl28DRKdOpW/preview',
+    url: 'https://drive.google.com/file/d/1nCLZ_7KS6Wp_0LLzscAtG04Pt51s0e0x/preview',
   },
 ];

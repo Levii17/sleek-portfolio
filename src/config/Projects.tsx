@@ -48,7 +48,7 @@ export const projects: Project[] = [
     live: 'https://perspectiva-five.vercel.app',
     details: true,
     projectDetailsPageSlug: '/projects/perspectiva',
-    isWorking: false, // TODO: confirm the deployment renders correctly before flipping true
+    isWorking: true, // TODO: confirm the deployment renders correctly before flipping true
     category: 'personal',
   },
 ];
