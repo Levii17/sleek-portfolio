@@ -2,7 +2,8 @@ import Github from '@/components/svgs/Github';
 import Instagram from '@/components/svgs/Instagram';
 import LinkedIn from '@/components/svgs/LinkedIn';
 import Mail from '@/components/svgs/Mail';
-import X from '@/components/svgs/X';
+
+// import X from '@/components/svgs/X';
 
 export const heroConfig = {
   // Personal Information
@@ -24,11 +25,11 @@ export const socialLinks = [
     href: 'https://www.instagram.com/x_mxolisi_x/',
     icon: <Instagram />,
   },
-  {
-    name: 'Twitter',
-    href: 'https://www.x.com/x_mxolisi_x/',
-    icon: <X />,
-  },
+  // {
+  //   name: 'Twitter',
+  //   href: 'https://www.x.com/x_mxolisi_x/',
+  //   icon: <X />,
+  // },
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/in/mxolisi-bhotile/',

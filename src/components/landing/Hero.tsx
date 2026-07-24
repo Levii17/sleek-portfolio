@@ -14,6 +14,7 @@ import Container from '../common/Container';
 import { RevealOnScroll } from '../common/RevealOnScroll';
 import { useSpotifyPlayer } from '../common/SpotifyPlayerProvider';
 import CV from '../svgs/CV';
+import Chat from '../svgs/Chat';
 import Spotify from '../svgs/Spotify';
 
 // 1. Define explicit props interface for SocialButton
@@ -275,6 +276,24 @@ export default function Hero() {
                   <CV />
                 </span>
                 Resume
+              </SocialButton>
+            </div>
+
+            {/* Get in touch Button mapped to the Contact page */}
+            <div
+              className="inline-block"
+              onClick={() =>
+                trackEvent({
+                  name: 'button_click',
+                  data: { buttonId: 'get_in_touch', section: 'hero_social' },
+                })
+              }
+            >
+              <SocialButton href="/contact">
+                <span className="flex size-3.5 items-center justify-center [&>svg]:size-full">
+                  <Chat />
+                </span>
+                Get in touch
               </SocialButton>
             </div>
           </div>

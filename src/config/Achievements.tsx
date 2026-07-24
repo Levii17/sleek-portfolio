@@ -1,22 +1,15 @@
 export const certificates = [
   {
+    file: '/certificates/freecodecamp-python.png',
+    title: 'Python',
+    issuer: 'freeCodeCamp',
+    date: '2026-07-15',
+  },
+  {
     file: '/certificates/introduction-to-cybersecurity.png',
     title: 'Introduction to Cybersecurity',
     issuer: 'Cisco Networking Academy',
     date: '2026-01-12',
-  },
-  {
-    file: '/certificates/introduction-to-cybersecurity-badge.png',
-    title: 'Introduction to Cybersecurity (Badge)',
-    issuer: 'Cisco Networking Academy',
-    date: '2026-01-12',
-  },
-  {
-    file: '/certificates/ai-skills-fest-2026.png',
-    title: 'AI Skills Fest 2026',
-    issuer: 'Microsoft',
-    // TODO: confirm the actual date for this one — not printed on the badge itself
-    date: '',
   },
   {
     file: '/certificates/freecodecamp-responsive-web-design.png',
@@ -41,12 +34,6 @@ export const certificates = [
     title: 'Data Visualization (Legacy)',
     issuer: 'freeCodeCamp',
     date: '2025-06-28',
-  },
-  {
-    file: '/certificates/freecodecamp-scientific-computing-with-python.png',
-    title: 'Scientific Computing with Python',
-    issuer: 'freeCodeCamp',
-    date: '2026-07-15',
   },
 
   // TODO: N4-N6 Electrical Engineering (NATED/TVET) — send the certificate
