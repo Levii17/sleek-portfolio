@@ -151,7 +151,7 @@ export default function ContactForm() {
                   <FormItem>
                     <FormLabel>Phone *</FormLabel>
                     <FormControl>
-                      <Input placeholder="+1 (123) xxx-xxxx" {...field} />
+                      <Input placeholder="+27 (67) xxx-xxxx" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
